@@ -1,38 +1,114 @@
-.App {
-  text-align: center;
+.Base::after{
+    background-image: linear-gradient(to right,rgba(255,255,255,0)0,#858585 100%);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.Allboxs:hover .divdown {
+    top: 302px;
+    transition: .5s ;
+}
+::-webkit-scrollbar {
+    display: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.slider-item.activee{
+    border: 8px solid red;
+    filter: brightness(1);
+}
+
+.line{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.paragraph{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.im1g:hover .Icon{
+    top: 40%;
+    font-size: 80px;
+    animation: bounce 1.6s infinite;
+}
+.im1g:hover .Icons{
+    top: 40%;
+    font-size: 60px;
+    animation: bounces 1.6s infinite;
+}
+
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(-50%) translateX(-50%) ;
+        animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+    50% {
+        transform: translateX(-40px);
+      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@keyframes bounces {
+    0%, 100% {
+        transform: translateY(-50%) translateX(-50%) ;
+        animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+    50% {
+        transform: translateX(-30px);
+      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
   }
-  to {
-    transform: rotate(360deg);
-  }
+
+
+
+
+
+.im1g:hover .year{
+    right: 0px;
+}
+.im1g:hover .rate{
+    left: 8px;
+    transition-delay: 200ms;
+}
+.im1g:hover .title{
+    bottom: 10px;
+    transition-delay: 180ms;
+}
+
+.im1g:hover .ovelayUpComingMovies{
+    background: linear-gradient(to right, #01022de5, transparent);
+}
+
+.cate.active{
+    background-color: #126;
+}
+
+.makescroll{
+    overflow: auto;
+    scrollbar-gutter: stable;
+    scroll-behavior: smooth;
+}
+.toLoadMore{
+    display: none;
+}
+.toLoadMore:nth-child(1) ,
+.toLoadMore:nth-child(2) ,
+.toLoadMore:nth-child(3) ,
+.toLoadMore:nth-child(4) ,
+.toLoadMore:nth-child(5) ,
+.toLoadMore:nth-child(6) ,
+.toLoadMore:nth-child(7) ,
+.toLoadMore:nth-child(8) ,
+.toLoadMore:nth-child(9) ,
+.toLoadMore:nth-child(10) ,
+.toLoadMore:nth-child(11) ,
+.toLoadMore:nth-child(12) {
+    display: inline-block;
+}
+
+
+.Category{
+    left: 0;
 }

@@ -1,24 +1,31 @@
-import logo from './logo.svg';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import Home from './components/Home/home';
+import DetailsPage from './components/Details/DetailsPage';
+import Category from './components/Category/Category';
+import { RecoilRoot } from 'recoil';
+import Nav from './Nav/Nav';
+import Favorites from './Pages/FavouriteMovies/FavouriteMovies';
+
+document.querySelector("body").style.background = "rgb(30 41 59)"
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+<RecoilRoot>
+    <Nav />
+    <div className="App   ">
+    <Routes>
+      <Route element={<Home />} path='/' />
+      <Route element={<DetailsPage />} path='/details/:movieId' />
+      <Route element={<Category />} path='/category/:movieName/:movieId' />
+      <Route element={<Favorites />} path='/favorites' />
+    </Routes>
     </div>
+
+</RecoilRoot>
+      
   );
 }
 
