@@ -8,7 +8,6 @@ import FavouriteMovies from '../../Atom/Favourite/Favourite'
 const Category = () => {
 
     const params = useParams()
-console.log(params)
     const [ categoryMov , setCategoryMov ] = useState()
 
     async function categoryMovies() {
@@ -97,7 +96,7 @@ function replaceItemAtIndex(arr, index, newValue) {
 
                         <Link key={index} id="boxs1" to={`/details/${categoryMov?.id}`} className=" im1g  overflow-hidden relative">
                             <div className="img h-[320px] max-sm:h-[450px] w-full ">
-                                <img loading='lazy' className="h-full w-full rounded-[10px] object-cover" src={`https://image.tmdb.org/t/p/original${categoryMov?.poster_path}`} alt="" />
+                                <img loading='lazy' className="h-full w-full rounded-[10px] object-cover" src={`https://image.tmdb.org/t/p/original${categoryMov?.poster_path}`} alt="img" />
                                 <div className="ovelayUpComingMovies absolute rounded-[9px] duration-300 inset-0 "></div>
                             </div>
                             <div className="Inf">

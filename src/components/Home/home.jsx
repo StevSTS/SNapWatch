@@ -150,7 +150,7 @@ function replaceItemAtIndex(arr, index, newValue) {
                                         },200)
                                     }}
                                 >
-                                    <img loading="lazy" className="w-[170px] h-[200px] rounded-[10px] object-cover " src={`https://image.tmdb.org/t/p/w500${popMovie.poster_path}`} alt="" />
+                                    <img loading="lazy" className="w-[170px] h-[200px] rounded-[10px] object-cover " src={`https://image.tmdb.org/t/p/w500${popMovie.poster_path}`} alt="img" />
                                 </NavLink>
                             ))}
                         </div>
@@ -198,7 +198,7 @@ function replaceItemAtIndex(arr, index, newValue) {
 
                         <Link key={index} id="boxs1" to={`/details/${upComingMovie?.id}`} className=" im1g  overflow-hidden relative">
                             <div className="img h-[320px] max-sm:h-[450px] w-full ">
-                                <img loading='lazy' className="h-full w-full rounded-[10px] object-cover" src={`https://image.tmdb.org/t/p/original${upComingMovie?.poster_path}`} alt="" />
+                                <img loading='lazy' className="h-full w-full rounded-[10px] object-cover" src={`https://image.tmdb.org/t/p/original${upComingMovie?.poster_path}`} alt="img" />
                                 <div className="ovelayUpComingMovies absolute rounded-[9px] duration-300 inset-0 "></div>
                             </div>
                             <div className="Inf">
@@ -253,7 +253,7 @@ function replaceItemAtIndex(arr, index, newValue) {
 
                         <Link key={index} id="boxs1" to={`/details/${topMovies?.id}`} className=" im1g  overflow-hidden relative">
                             <div className="img h-[320px] max-sm:h-[450px] w-full ">
-                                <img loading='lazy' className="h-full w-full rounded-[10px] object-cover" src={`https://image.tmdb.org/t/p/original${topMovies?.poster_path}`} alt="" />
+                                <img loading='lazy' className="h-full w-full rounded-[10px] object-cover" src={`https://image.tmdb.org/t/p/original${topMovies?.poster_path}`} alt="img" />
                                 <div className="ovelayUpComingMovies absolute rounded-[9px] duration-300 inset-0 "></div>
                             </div>
                             <div className="Inf">
@@ -304,14 +304,13 @@ function replaceItemAtIndex(arr, index, newValue) {
 
                         trendingMovies?.map((trendingMovies , index) => {
                             const isLiked = addRemoveLike.find(m => m.id === trendingMovies.id)?.isLiked || false;
-                            console.log("ystaaaaaaaaa" , isLiked)
 
                             return (
                     <div className="toLoadMore relative overflow-hidden">
 
                         <Link key={index} id="boxs1" to={`/details/${trendingMovies?.id}`} className=" im1g  overflow-hidden relative">
                             <div className="img h-[320px] max-sm:h-[450px] w-full ">
-                                <img loading='lazy' className="h-full w-full rounded-[10px] object-cover" src={`https://image.tmdb.org/t/p/original${trendingMovies?.poster_path}`} alt="" />
+                                <img loading='lazy' className="h-full w-full rounded-[10px] object-cover" src={`https://image.tmdb.org/t/p/original${trendingMovies?.poster_path}`} alt="img" />
                                 <div className="ovelayUpComingMovies absolute rounded-[9px] duration-300 inset-0 "></div>
                             </div>
                             <div className="Inf">

@@ -11,7 +11,6 @@ const Favorites = () => {
 
 
     const watch = useRecoilValue(FavouriteMovies)
-    console.log(watch)
 
 
 if(watch.length === 0 ) {
@@ -55,7 +54,7 @@ if(watch.length === 0 ) {
 
                     <Link key={index} to={`/details/${trendingMovies?.id}`} className="im1g  relative ">
                         <div className="img">
-                            <img className="h-[320px] w-[100%] object-cover rounded-lg  " src={`https://image.tmdb.org/t/p/original${trendingMovies?.poster_path}`} alt="" />
+                            <img className="h-[320px] w-[100%] object-cover rounded-lg  " src={`https://image.tmdb.org/t/p/original${trendingMovies?.poster_path}`} alt="img" />
                             <div className="ovelayUpComingMovies absolute duration-300 inset-0 "></div>
                         </div>
                         <div className="Inf">

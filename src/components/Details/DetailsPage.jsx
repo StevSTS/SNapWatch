@@ -14,7 +14,6 @@ const DetailsPage = () => {
       let data = await res.json();
       setDetailsPage(data);
     }
-    console.log(detailsPage)
 
   useEffect(() => {
     getDataDetailsPage();
@@ -51,7 +50,7 @@ const DetailsPage = () => {
 
 
         <div className='Movie lg:flex gap-10 items-start '>
-    <img loading='lazy' className='rounded-[15px] w-[342px] h-[513px] max-lg:w-full max-lg:h-[320px] object-cover ' src={`${baseImg}original${detailsPage?.poster_path}`} alt="" />
+    <img loading='lazy' className='rounded-[15px] w-[342px] h-[513px] max-lg:w-full max-lg:h-[320px] object-cover ' src={`${baseImg}original${detailsPage?.poster_path}`} alt="img" />
 
 <div className='Info text-white mt-6 w-full ' >
   <h2 className='text-[35px] font-bold mb-5 '>{detailsPage?.title}</h2>
