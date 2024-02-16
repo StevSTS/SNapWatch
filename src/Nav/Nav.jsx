@@ -92,4 +92,4 @@ function overla() {
   )
 }
 
-export default Nav
+export default React.memo(Nav)

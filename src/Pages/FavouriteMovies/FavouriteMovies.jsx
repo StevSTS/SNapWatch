@@ -106,4 +106,4 @@ if(watch.length === 0 ) {
   )
 }
 
-export default Favorites
+export default React.memo(Favorites)

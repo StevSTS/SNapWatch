@@ -355,4 +355,4 @@ function replaceItemAtIndex(arr, index, newValue) {
     );
 }
 
-export default Home;
+export default React.memo(Home);

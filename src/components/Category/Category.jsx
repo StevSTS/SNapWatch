@@ -138,4 +138,4 @@ function replaceItemAtIndex(arr, index, newValue) {
   )
 }
 
-export default Category
+export default React.memo(Category)

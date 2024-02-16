@@ -127,4 +127,4 @@ const DetailsPage = () => {
   )
 }
 
-export default DetailsPage
+export default React.memo(DetailsPage)
