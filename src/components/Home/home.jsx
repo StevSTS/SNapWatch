@@ -109,7 +109,6 @@ function replaceItemAtIndex(arr, index, newValue) {
       }));
   
       const [addRemoveLike, setAddRemoveLike] = useState(initialFavouriteMovies);
-      console.log("HenaYsta" , addRemoveLike)
 
       
 
@@ -203,7 +202,7 @@ function replaceItemAtIndex(arr, index, newValue) {
                                 <div className="ovelayUpComingMovies absolute rounded-[9px] duration-300 inset-0 "></div>
                             </div>
                             <div className="Inf">
-                                <div className="Icons bg-red-400 rounded-full duration-500 absolute top-[-20%] text-[0] translate-y-[-50%] left-[50%] translate-x-[-50%] text-white">
+                                <div className="Icons bg-blue-700 rounded-full duration-500 absolute top-[-20%] text-[0] translate-y-[-50%] left-[50%] translate-x-[-50%] text-white">
                                     <BiPlay />
                                 </div>
                                 <div className="text-white">
@@ -226,7 +225,7 @@ function replaceItemAtIndex(arr, index, newValue) {
                                 <AiFillHeart />
                             </div>
                         </div>
-                        // Likeeeeeeeeeeeeeeeeeeeee
+                            // Likeeeeeeeeeeeeeeeeeeeee
 
                             )
 
@@ -243,7 +242,7 @@ function replaceItemAtIndex(arr, index, newValue) {
             <div className="container p-6 2xl:w-[1350px] max-sm:w-[100%] ">
 
                 <div className="Movies ">
-                    <p className="mb-8 mt-5 font-bold text-[35px] text-white ">topMovies Movies</p>
+                    <p className="mb-8 mt-5 font-bold text-[35px] text-white ">Top Movies</p>
                     <div className="grid 2xl:grid-cols-5 max-2xl:grid-cols-5 max-xl:grid-cols-4  max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 gap-5">
                     {
 
@@ -258,7 +257,7 @@ function replaceItemAtIndex(arr, index, newValue) {
                                 <div className="ovelayUpComingMovies absolute rounded-[9px] duration-300 inset-0 "></div>
                             </div>
                             <div className="Inf">
-                                <div className="Icons bg-red-400 rounded-full duration-500 absolute top-[-20%] text-[0] translate-y-[-50%] left-[50%] translate-x-[-50%] text-white">
+                                <div className="Icons bg-blue-700 rounded-full duration-500 absolute top-[-20%] text-[0] translate-y-[-50%] left-[50%] translate-x-[-50%] text-white">
                                     <BiPlay />
                                 </div>
                                 <div className="text-white">
@@ -299,7 +298,7 @@ function replaceItemAtIndex(arr, index, newValue) {
             <div className="container p-6 2xl:w-[1350px] max-sm:w-[100%] ">
 
                 <div className="Movies ">
-                    <p className="mb-8 mt-5 font-bold text-[35px] text-white ">trending Movies</p>
+                    <p className="mb-8 mt-5 font-bold text-[35px] text-white ">Trending Movies</p>
                     <div className="grid 2xl:grid-cols-5 max-2xl:grid-cols-5 max-xl:grid-cols-4  max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 gap-5">
                     {
 
@@ -316,7 +315,7 @@ function replaceItemAtIndex(arr, index, newValue) {
                                 <div className="ovelayUpComingMovies absolute rounded-[9px] duration-300 inset-0 "></div>
                             </div>
                             <div className="Inf">
-                                <div className="Icons bg-red-400 rounded-full duration-500 absolute top-[-20%] text-[0] translate-y-[-50%] left-[50%] translate-x-[-50%] text-white">
+                                <div className="Icons bg-blue-700 rounded-full duration-500 absolute top-[-20%] text-[0] translate-y-[-50%] left-[50%] translate-x-[-50%] text-white">
                                     <BiPlay />
                                 </div>
                                 <div className="text-white">

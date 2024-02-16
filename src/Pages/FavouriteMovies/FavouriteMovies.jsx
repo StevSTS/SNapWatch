@@ -32,7 +32,7 @@ if(watch.length === 0 ) {
 
 
   return (
-    <section className='pt-28'>
+    <section className='pt-28 pb-14 '>
         <div className="container">
             
 
@@ -59,7 +59,7 @@ if(watch.length === 0 ) {
                             <div className="ovelayUpComingMovies absolute duration-300 inset-0 "></div>
                         </div>
                         <div className="Inf">
-                            <div className="Icons bg-red-400 rounded-full duration-500 absolute top-[-20%] text-[0] translate-y-[-50%] left-[50%] translate-x-[-50%] text-white">
+                            <div className="Icons bg-blue-700 rounded-full duration-500 absolute top-[-20%] text-[0] translate-y-[-50%] left-[50%] translate-x-[-50%] text-white">
                                 <BiPlay />
                             </div>
                             <div className="text-white">

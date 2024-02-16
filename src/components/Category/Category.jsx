@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import NavBar from '../NavBar/nav'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { BiPlay } from 'react-icons/bi'
-import { AiFillStar } from 'react-icons/ai'
-import { motion } from "framer-motion";
+import { AiFillHeart, AiFillStar } from 'react-icons/ai'
+import { useRecoilState } from 'recoil'
+import FavouriteMovies from '../../Atom/Favourite/Favourite'
 
 const Category = () => {
 
@@ -20,19 +20,78 @@ console.log(params)
         categoryMovies()
     }, [params])
     
+
+
+
+
+
+
+
+    const [favouriteMovies , setFavouriteMovies] = useRecoilState(FavouriteMovies);
+
+
+function likeOnClick(movieType) {
+    
+    // ///////////////
+    let newCart = [...favouriteMovies , {
+        ...movieType,
+        quan: 1
+    }]
+    for(let i = 0 ; i < favouriteMovies.length ; i++) {
+        if(favouriteMovies[i].id === movieType.id ) {
+            newCart = replaceItemAtIndex(favouriteMovies , i , {
+                ...movieType,
+                quan: favouriteMovies[i].quan + 1
+            })
+            break;
+        }
+        else{
+            newCart = [...favouriteMovies , {
+                ...movieType,
+                quan: 1
+            }]
+        }
+    }
+    // ////////////////
+    setFavouriteMovies(newCart)
+    localStorage.setItem("Favourite" , JSON.stringify(newCart) )
+}
+
+function replaceItemAtIndex(arr, index, newValue) {
+    return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
+  }
+
+
+  const like = useRef()
+
+
+  
+  const initialFavouriteMovies = favouriteMovies.map(movie => ({
+      ...movie,
+      isLiked: true,
+      }));
+  
+      const [addRemoveLike, setAddRemoveLike] = useState(initialFavouriteMovies);
+
+
+
+
+
+
     
     
   return (
       <>
 
-<section className='mt-12'>
+<section className='mt-16'>
             <div className="container p-6 2xl:w-[1350px] max-sm:w-[100%] ">
 
                 <div className="Movies ">
-                    <p className="mb-8 mt-5 font-bold text-[35px] text-white ">Up Coming Movies</p>
+                    <p className="mb-8 mt-5 font-bold text-[35px] text-white ">All {params.movieName} Movies</p>
                     <div className="grid 2xl:grid-cols-5 max-2xl:grid-cols-5 max-xl:grid-cols-4  max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 gap-5">
                     {
                         categoryMov?.map((categoryMov , index) => {
+                            const isLiked = addRemoveLike.find(m => m.id === categoryMov.id)?.isLiked || false;
                             return (
                     <div className="toLoadMore relative overflow-hidden">
 
@@ -42,7 +101,7 @@ console.log(params)
                                 <div className="ovelayUpComingMovies absolute rounded-[9px] duration-300 inset-0 "></div>
                             </div>
                             <div className="Inf">
-                                <div className="Icons bg-red-400 rounded-full duration-500 absolute top-[-20%] text-[0] translate-y-[-50%] left-[50%] translate-x-[-50%] text-white">
+                                <div className="Icons bg-blue-700 rounded-full duration-500 absolute top-[-20%] text-[0] translate-y-[-50%] left-[50%] translate-x-[-50%] text-white">
                                     <BiPlay />
                                 </div>
                                 <div className="text-white">
@@ -58,6 +117,11 @@ console.log(params)
                                 </div>
                             </div>
                         </Link>
+                        <div ref={like} onClick={() =>{
+                                likeOnClick(categoryMov)
+                            }} className={`text-[30px] ${isLiked ? 'text-[red]' : 'text-white'} cursor-pointer absolute top-2 left-3 `}>
+                                <AiFillHeart />
+                        </div>
                         </div>
 
                             )
