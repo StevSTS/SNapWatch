@@ -38,7 +38,26 @@
     font-size: 60px;
     animation: bounces 1.6s infinite;
 }
+.Likee{
+    animation: LIKE cubic-bezier(0.6, -0.48, 0.735, 0.045) 1s forwards;
 
+}
+
+@keyframes LIKE {
+    0% {
+        transform: scale(1) rotate(0deg) ;
+      }
+      50% {
+        transform: scale(1.6) rotate(360deg);
+    }
+    /* 80%{
+          transform: scale(2) rotate(360deg);
+
+      } */
+      100% {
+        transform: scale(1);
+      }
+}
 
 @keyframes bounce {
     0%, 100% {
@@ -90,24 +109,6 @@
     scrollbar-gutter: stable;
     scroll-behavior: smooth;
 }
-.toLoadMore{
-    display: none;
-}
-.toLoadMore:nth-child(1) ,
-.toLoadMore:nth-child(2) ,
-.toLoadMore:nth-child(3) ,
-.toLoadMore:nth-child(4) ,
-.toLoadMore:nth-child(5) ,
-.toLoadMore:nth-child(6) ,
-.toLoadMore:nth-child(7) ,
-.toLoadMore:nth-child(8) ,
-.toLoadMore:nth-child(9) ,
-.toLoadMore:nth-child(10) ,
-.toLoadMore:nth-child(11) ,
-.toLoadMore:nth-child(12) {
-    display: inline-block;
-}
-
 
 .Category{
     left: 0;

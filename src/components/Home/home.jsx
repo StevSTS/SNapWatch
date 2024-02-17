@@ -67,28 +67,28 @@ const Home = () => {
 const [favouriteMovies , setFavouriteMovies] = useRecoilState(FavouriteMovies);
 
 
-function likeOnClick(movieType) {
-    
+function likeOnClick(movieType, isliked) {
+    console.log(movieType)
     // ///////////////
-    let newCart = [...favouriteMovies , {
+    let  newCart =  [...favouriteMovies , {
         ...movieType,
-        quan: 1
+        isLiked: true
     }]
+
+
     for(let i = 0 ; i < favouriteMovies.length ; i++) {
-        if(favouriteMovies[i].id === movieType.id ) {
-            newCart = replaceItemAtIndex(favouriteMovies , i , {
-                ...movieType,
-                quan: favouriteMovies[i].quan + 1
-            })
+        console.log(favouriteMovies[i].isLiked)
+        if(favouriteMovies[i].id === movieType.id) {
+            
+                newCart = removeItemAtIndex(favouriteMovies , i )
+            
             break;
-        }
-        else{
-            newCart = [...favouriteMovies , {
-                ...movieType,
-                quan: 1
-            }]
-        }
+        } 
     }
+
+
+
+    // }
     // ////////////////
     setFavouriteMovies(newCart)
     localStorage.setItem("Favourite" , JSON.stringify(newCart) )
@@ -97,39 +97,47 @@ function likeOnClick(movieType) {
 function replaceItemAtIndex(arr, index, newValue) {
     return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
   }
+function removeItemAtIndex(arr, index) {
+    return [...arr.slice(0, index), ...arr.slice(index + 1)];
+  }
 
 
   const like = useRef()
 
+//   const [addRemoveLike , setAddRemoveLike] = useState(favouriteMovies)
 
-  
-  const initialFavouriteMovies = favouriteMovies.map(movie => ({
-      ...movie,
-      isLiked: true,
-      }));
-  
-      const [addRemoveLike, setAddRemoveLike] = useState(initialFavouriteMovies);
+//   useEffect(()=>{
+//       const initialFavouriteMovies = favouriteMovies.map(movie => ({
+//           ...movie,
+//           isLiked: true,
+//           }));
 
+          
+//           setAddRemoveLike(favouriteMovies)
+//           console.log(addRemoveLike)
+        
+//         },[favouriteMovies])
+        
       
 
     return (
         <>
         <section className=" ">
 
-                <div className='content relative   '>
+                <div className='content relative  '>
                     <div ref={banner} className="duration-[.2s]">
 
                         <div className='imgbgaft after:bg-gradient-to-r from-[#01022de5]  to-transparent after:opacity-[.8] after:absolute after:inset-0'>
                             <div className="h-[100vh] w-full bg-cover bg-top " style={{backgroundImage: `url(https://image.tmdb.org/t/p/original${activeMovieInfo?.backdrop_path})`}} ></div>
                         </div>
-            <div className="container px-20 max-sm:w-[100%]">
-                        <div className='Info text-white absolute top-[50%] translate-y-[-60%] ml-10'>
+            <div className="container lg:px-20 ">
+                        <div className='Info text-white absolute top-[50%] translate-y-[-60%] ml-10 max-sm:m-0'>
                             <h2 className='mb-5 text-[35px] font-bold '>{activeMovieInfo?.title}</h2>
                             <div className='flex items-center gap-5 mb-5 '>
                                 <p className='font-[500]'>{activeMovieInfo?.release_date}</p>
                                 <span className='bg-[#787878] font-bold px-2 rounded-full py-1 '>{activeMovieInfo?.vote_average.toFixed(1)}</span>
                             </div>
-                            <p className='line w-[500px] '>{activeMovieInfo?.overview}</p>
+                            <p className='line pe-6 sm:w-[520px] '>{activeMovieInfo?.overview}</p>
                             <Link to={`/details/${activeMovieInfo?.id}`} className="flex w-fit items-center gap-3 bg-red-600 hover:bg-red-700 duration-300 mt-6 p-3 px-6 rounded-tl-2xl rounded-br-2xl ">
                                 <span className="text-[24px] "><BiPlayCircle /></span>
                                 Watch Now
@@ -137,7 +145,7 @@ function replaceItemAtIndex(arr, index, newValue) {
                         </div>
                     </div>
                     <div className="Base relative after:w-[100px] after:right-[0px] after:z-[2000] after:top-[-220px] after:h-[200px] after:absolute">
-                        <div className="slider absolute bottom-5 right-6 flex w-[600px] z-[300] overflow-x-auto gap-3 ">
+                        <div className="slider absolute bottom-5 right-6 flex sm:w-[600px] max-sm:px-4 z-[300] overflow-x-auto gap-3 ">
                             {popularMovies?.map((popMovie, index) => (
                                 <NavLink
                                     key={index}
@@ -164,25 +172,6 @@ function replaceItemAtIndex(arr, index, newValue) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         <section>
             <div className="container p-6 2xl:w-[1350px] max-sm:w-[100%] ">
 
@@ -192,7 +181,8 @@ function replaceItemAtIndex(arr, index, newValue) {
                     {
 
                         upComingMovies?.map((upComingMovie , index) => {
-                            const isLiked = addRemoveLike.find(m => m.id === upComingMovie.id)?.isLiked || false;
+                            const isLiked = favouriteMovies.find(m => m.id === upComingMovie.id)?.isLiked || false;
+                            console.log(isLiked)
                             return (
                     <div className="toLoadMore relative overflow-hidden">
 
@@ -219,10 +209,10 @@ function replaceItemAtIndex(arr, index, newValue) {
                             </div>
                         </Link>
                         {/* Likeeeeeeeeeeeeeeeeee */}
-                        <div ref={like} onClick={() =>{
-                                likeOnClick(upComingMovie)
-                            }} className={`text-[30px] ${isLiked ? 'text-[red]' : 'text-white'} cursor-pointer absolute top-2 left-3 `}>
-                                <AiFillHeart />
+                            <div ref={like} onClick={() =>{
+                                    likeOnClick(upComingMovie)
+                                }} className={`text-[30px] duration-300 ${isLiked ? 'Likee text-[red] ease-in' : 'text-white'} cursor-pointer absolute top-2 left-3 `}>
+                                    <AiFillHeart />
                             </div>
                         </div>
                             // Likeeeeeeeeeeeeeeeeeeeee
@@ -247,7 +237,7 @@ function replaceItemAtIndex(arr, index, newValue) {
                     {
 
                         topMovies?.map((topMovies , index) => {
-                            const isLiked = addRemoveLike.find(m => m.id === topMovies.id)?.isLiked || false;
+                            const isLiked = favouriteMovies.find(m => m.id === topMovies.id)?.isLiked || false;
                             return (
                     <div className="toLoadMore relative overflow-hidden">
 
@@ -303,7 +293,7 @@ function replaceItemAtIndex(arr, index, newValue) {
                     {
 
                         trendingMovies?.map((trendingMovies , index) => {
-                            const isLiked = addRemoveLike.find(m => m.id === trendingMovies.id)?.isLiked || false;
+                            const isLiked = favouriteMovies.find(m => m.id === trendingMovies.id)?.isLiked || false;
 
                             return (
                     <div className="toLoadMore relative overflow-hidden">

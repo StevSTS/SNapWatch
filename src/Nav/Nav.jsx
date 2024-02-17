@@ -57,15 +57,15 @@ function overla() {
 
   return (
     <nav ref={nav} className='fixed z-[9999999] h-0 duration-300 text-white w-full top-0 '>
-        <div className='container'>
+        <div className='container max-sm:p-0 max-smm:px-2 max-smm:pe-3 '>
             <div className='flex items-center justify-between '>
-                <div className="ms-16">
+                <div className="ms-16 max-sm:m-0 ">
                     <Link to={'/'} className='logo active:scale-[.97] duration-300 w-[100px] cursor-pointer flex items-center text-white '>
-                        <img loading='lazy' src={logo} alt="logo-home" />
-                        <h1 className="text-[22px] ps-3 py-6 ">SNapWatch</h1>
+                        <img className="max-smm:w-[90px] max-smm:h-[90px] " loading='lazy' src={logo} alt="logo-home" />
+                        <h1 className="text-[22px] ps-3 py-6 max-smm:text-[18px] max-smm:hidden ">SNapWatch</h1>
                     </Link>
                 </div>
-                <div className='pages me-24 '>
+                <div className='pages me-24 max-sm:-m-0 max-sm:me-10 max-smm:m-0 '>
                     <ul className='flex items-center gap-4'>
                         <li><Link to={'/'} >Home</Link></li>
                         <li><Link to={'/favorites'} >Favorites</Link></li>
