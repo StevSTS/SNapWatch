@@ -1,5 +1,5 @@
 .Base::after{
-    background-image: linear-gradient(to right,rgba(255,255,255,0)0,#858585 100%);
+    background-image: linear-gradient(to right,rgba(255,255,255,0)0,rgb(41, 41, 41) 100%);
 }
 
 .Allboxs:hover .divdown {

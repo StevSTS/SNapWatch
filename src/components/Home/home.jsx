@@ -70,10 +70,10 @@ const [favouriteMovies , setFavouriteMovies] = useRecoilState(FavouriteMovies);
 function likeOnClick(movieType, isliked) {
     console.log(movieType)
     // ///////////////
-    let  newCart =  [...favouriteMovies , {
+    let  newCart =  [{
         ...movieType,
         isLiked: true
-    }]
+    } , ...favouriteMovies]
 
 
     for(let i = 0 ; i < favouriteMovies.length ; i++) {
@@ -145,7 +145,7 @@ function removeItemAtIndex(arr, index) {
                         </div>
                     </div>
                     <div className="Base relative after:w-[100px] after:right-[0px] after:z-[2000] after:top-[-220px] after:h-[200px] after:absolute">
-                        <div className="slider absolute bottom-5 right-6 flex sm:w-[600px] max-sm:px-4 z-[300] overflow-x-auto gap-3 ">
+                        <div className="slider absolute bottom-5 right-0 flex sm:w-[600px] max-sm:px-4 z-[300] overflow-x-auto gap-3 ">
                             {popularMovies?.map((popMovie, index) => (
                                 <NavLink
                                     key={index}
