@@ -119,7 +119,7 @@ function removeItemAtIndex(arr, index) {
                                 <span className='bg-[#787878] font-bold px-2 rounded-full py-1 '>{activeMovieInfo?.vote_average.toFixed(1)}</span>
                             </div>
                             <p className='line pe-6 sm:w-[520px] '>{activeMovieInfo?.overview}</p>
-                            <Link to={`/details/${activeMovieInfo?.id}`} className="flex w-fit items-center gap-3 bg-red-600 hover:bg-red-700 duration-300 mt-6 p-3 px-6 rounded-tl-2xl rounded-br-2xl ">
+                            <Link to={`/details/${activeMovieInfo?.id}`} className="flex w-fit items-center gap-3 mb-5 bg-red-600 hover:bg-red-700 duration-300 mt-6 p-3 px-6 rounded-tl-2xl rounded-br-2xl ">
                                 <span className="text-[24px] "><BiPlayCircle /></span>
                                 Watch Now
                             </Link>
