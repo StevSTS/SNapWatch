@@ -27,52 +27,39 @@ const Category = () => {
 
 
     const [favouriteMovies , setFavouriteMovies] = useRecoilState(FavouriteMovies);
-
-
-function likeOnClick(movieType) {
+    console.log(favouriteMovies)
+    var testing
+    function likeOnClick(movieType, isliked) {
+        let  newCart =  [{
+            ...movieType,
+            isLiked: true
+        } , ...favouriteMovies]
     
-    // ///////////////
-    let newCart = [...favouriteMovies , {
-        ...movieType,
-        quan: 1
-    }]
-    for(let i = 0 ; i < favouriteMovies.length ; i++) {
-        if(favouriteMovies[i].id === movieType.id ) {
-            newCart = replaceItemAtIndex(favouriteMovies , i , {
-                ...movieType,
-                quan: favouriteMovies[i].quan + 1
-            })
-            break;
+        for(let i = 0 ; i < favouriteMovies.length ; i++) {
+            if(favouriteMovies[i].id === movieType.id) {
+                newCart = removeItemAtIndex(favouriteMovies , i )
+                
+                break;
+            } 
         }
-        else{
-            newCart = [...favouriteMovies , {
-                ...movieType,
-                quan: 1
-            }]
-        }
+    
+    
+    
+        // }
+        // ////////////////
+        setFavouriteMovies(newCart)
+        localStorage.setItem("Favourite" , JSON.stringify(newCart) )
     }
-    // ////////////////
-    setFavouriteMovies(newCart)
-    localStorage.setItem("Favourite" , JSON.stringify(newCart) )
-}
-
-function replaceItemAtIndex(arr, index, newValue) {
-    return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
-  }
-
-
-  const like = useRef()
-
-
-  
-  const initialFavouriteMovies = favouriteMovies.map(movie => ({
-      ...movie,
-      isLiked: true,
-      }));
-  
-      const [addRemoveLike, setAddRemoveLike] = useState(initialFavouriteMovies);
-
-
+    
+    function replaceItemAtIndex(arr, index, newValue) {
+        return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
+    }
+    function removeItemAtIndex(arr, index) {
+        return [...arr.slice(0, index), ...arr.slice(index + 1)];
+    }
+    
+    
+      const like = useRef()
 
 
 
@@ -90,7 +77,7 @@ function replaceItemAtIndex(arr, index, newValue) {
                     <div className="grid 2xl:grid-cols-5 max-2xl:grid-cols-5 max-xl:grid-cols-4  max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 gap-5">
                     {
                         categoryMov?.map((categoryMov , index) => {
-                            const isLiked = addRemoveLike.find(m => m.id === categoryMov.id)?.isLiked || false;
+                            const isLiked = favouriteMovies.find(m => m.id === categoryMov.id)?.isLiked || false;
                             return (
                     <div className="toLoadMore relative overflow-hidden">
 
@@ -118,7 +105,7 @@ function replaceItemAtIndex(arr, index, newValue) {
                         </Link>
                         <div ref={like} onClick={() =>{
                                 likeOnClick(categoryMov)
-                            }} className={`text-[30px] ${isLiked ? 'text-[red]' : 'text-white'} cursor-pointer absolute top-2 left-3 `}>
+                            }} className={`text-[30px] ${isLiked ? 'Likee text-[red] ease-in' : 'text-white'} cursor-pointer absolute top-2 left-3 `}>
                                 <AiFillHeart />
                         </div>
                         </div>

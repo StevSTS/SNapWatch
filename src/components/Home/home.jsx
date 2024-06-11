@@ -65,22 +65,17 @@ const Home = () => {
 
 
 const [favouriteMovies , setFavouriteMovies] = useRecoilState(FavouriteMovies);
-
-
+console.log(favouriteMovies)
+var testing
 function likeOnClick(movieType, isliked) {
-    console.log(movieType)
-    // ///////////////
     let  newCart =  [{
         ...movieType,
         isLiked: true
     } , ...favouriteMovies]
 
-
     for(let i = 0 ; i < favouriteMovies.length ; i++) {
-        console.log(favouriteMovies[i].isLiked)
         if(favouriteMovies[i].id === movieType.id) {
-            
-                newCart = removeItemAtIndex(favouriteMovies , i )
+            newCart = removeItemAtIndex(favouriteMovies , i )
             
             break;
         } 
@@ -96,28 +91,14 @@ function likeOnClick(movieType, isliked) {
 
 function replaceItemAtIndex(arr, index, newValue) {
     return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
-  }
+}
 function removeItemAtIndex(arr, index) {
     return [...arr.slice(0, index), ...arr.slice(index + 1)];
-  }
+}
 
 
   const like = useRef()
 
-//   const [addRemoveLike , setAddRemoveLike] = useState(favouriteMovies)
-
-//   useEffect(()=>{
-//       const initialFavouriteMovies = favouriteMovies.map(movie => ({
-//           ...movie,
-//           isLiked: true,
-//           }));
-
-          
-//           setAddRemoveLike(favouriteMovies)
-//           console.log(addRemoveLike)
-        
-//         },[favouriteMovies])
-        
       
 
     return (
@@ -158,7 +139,7 @@ function removeItemAtIndex(arr, index) {
                                         },200)
                                     }}
                                 >
-                                    <img loading="lazy" className="w-[170px] h-[200px] rounded-[10px] object-cover " src={`https://image.tmdb.org/t/p/w500${popMovie.poster_path}`} alt="img" />
+                                    <img loading="eager" className="w-[170px] h-[200px] rounded-[10px] object-cover " src={`https://image.tmdb.org/t/p/w500${popMovie.poster_path}`} alt="img" />
                                 </NavLink>
                             ))}
                         </div>
@@ -182,7 +163,6 @@ function removeItemAtIndex(arr, index) {
 
                         upComingMovies?.map((upComingMovie , index) => {
                             const isLiked = favouriteMovies.find(m => m.id === upComingMovie.id)?.isLiked || false;
-                            console.log(isLiked)
                             return (
                     <div className="toLoadMore relative overflow-hidden">
 
@@ -266,7 +246,7 @@ function removeItemAtIndex(arr, index) {
                         {/* Likeeeeeeeeeeeeeeeeee */}
                         <div ref={like} onClick={() =>{
                                 likeOnClick(topMovies)
-                            }} className={`text-[30px] ${isLiked ? 'text-[red]' : 'text-white'} cursor-pointer absolute top-2 left-3 `}>
+                            }} className={`text-[30px] ${isLiked ? 'Likee text-[red]' : 'text-white'} cursor-pointer absolute top-2 left-3 `}>
                                 <AiFillHeart />
                             </div>
                         </div>
@@ -323,7 +303,7 @@ function removeItemAtIndex(arr, index) {
                         {/* Likeeeeeeeeeeeeeeeeee */}
                         <div ref={like} onClick={() =>{
                                 likeOnClick(trendingMovies)
-                            }} className={`text-[30px] ${isLiked ? 'text-[red]' : 'text-white'} cursor-pointer absolute top-2 left-3 `}>
+                            }} className={`text-[30px] ${isLiked ? 'Likee text-[red]' : 'text-white'} cursor-pointer absolute top-2 left-3 `}>
                                 <AiFillHeart />
                             </div>
                         </div>

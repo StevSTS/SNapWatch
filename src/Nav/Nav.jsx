@@ -1,7 +1,10 @@
+import { BiSearchAlt } from "react-icons/bi"; 
 import { FaBars } from "react-icons/fa";
 import React, { useEffect, useRef, useState } from 'react'
 import logo from '../assets/imgs/logo.png'
 import { Link, NavLink } from 'react-router-dom'
+import { useRecoilState, useRecoilValue } from "recoil";
+import FavouriteMovies from "../Atom/Favourite/Favourite";
 const Nav = () => {
 
     const nav = useRef()
@@ -55,6 +58,37 @@ function overla() {
   
 }
 
+
+// Search
+
+const [favouriteMovies , setFavouriteMovies] = useRecoilState(FavouriteMovies);
+
+
+const [searchName , setSearchName] = useState(false)
+console.log(searchName)
+
+let newCartFav
+
+function searchMovieByName(inpValue) {
+
+
+  favouriteMovies.forEach((movie) => {
+  if(movie.title.startsWith(inpValue)) {
+    // setFavouriteMovies(movie)
+    newCartFav = [{movie}]
+    console.log(newCartFav)
+    localStorage.setItem("newCartFav" , JSON.stringify(newCartFav) )
+  }
+})
+}
+
+
+
+
+
+
+
+
   return (
     <nav ref={nav} className='fixed z-[9999999] h-0 duration-300 text-white w-full top-0 '>
         <div className='container max-sm:p-0 max-smm:px-2 max-smm:pe-3 '>
@@ -72,6 +106,23 @@ function overla() {
                         <div onClick={changeClass} className="cursor-pointer " >
                           <FaBars />
                         </div>
+                        {/* {
+                          searchName ? (
+                            <>
+                            <div>
+                              <input onKeyUp={(e) => searchMovieByName(e.target.value)} type="text" className="w-[190px] h-[28px] px-3 rounded-[12px] duration-500 outline-none text-black " />
+                            </div>
+                            </>
+                          ) :
+                          <>
+                        <div>
+                          <input type="text" className="w-[0px] h-[26px] rounded-[12px]  " />
+                        </div>
+                        <div onClick={() => setSearchName(!searchName)} className="SearchIcon duration-1000 text-[20px] cursor-pointer px-2 py-1 rounded-full">
+                          <BiSearchAlt />
+                        </div>
+                          </>
+                        } */}
                     </ul>
                 </div>
             </div>
@@ -80,9 +131,9 @@ function overla() {
           <div ref={navBa} className=' duration-300 bg-[#123] shadow-lg h-[100vh] overflow-auto text-white w-[280px] absolute left-[-500px] top-0 '>
               <ul className=' mt-10 '>
                 {
-                  sideBar?.map((cate) => {
+                  sideBar?.map((cate , index) => {
                     return (
-                      <li><NavLink to={`/category/${cate.name}/${cate.id}`} className='cate hover:bg-[#ffffff96] duration-300 py-2 block my-2 mt-3 mx-3 ps-4 rounded-[10px] '>{cate.name}</NavLink></li>
+                      <li key={index}><NavLink to={`/category/${cate.name}/${cate.id}`} className='cate hover:bg-[#ffffff96] duration-300 py-2 block my-2 mt-3 mx-3 ps-4 rounded-[10px] '>{cate.name}</NavLink></li>
                     )
                   })
                 }
