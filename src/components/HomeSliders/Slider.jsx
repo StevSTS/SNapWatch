@@ -46,7 +46,7 @@ const Slider = ({useSt,p}) => {
   return (
     <section className='mb-10'>
         <div className="container px-[58px]">
-            <p className="my-8 font-bold text-[35px] text-white ">{p}</p>
+            <p className="my-8 font-bold text-[35px] text-white max-lg:text-[27px] ">{p}</p>
             <div className='Movies flex gap-6 w-full overflow-x-auto scroll-smooth '>
                 {
                     useSt?.map((upComingMovie, index) => {
@@ -56,7 +56,7 @@ const Slider = ({useSt,p}) => {
                                 <Link id="boxs1" to={`/details/${upComingMovie?.id}`} className="im1g">
                                     <div className='overflow-hidden relative'>
                                             <div className='colorDiv duration-[1.5s] backdrop-blur-[2px] absolute z-[200] w-[1200px] h-[20px] rotate-[-45deg] top-0 left-[-660px] '></div>
-                                        <div className="img w-[350px] h-[450px] relative ">
+                                        <div className="img w-[350px] h-[450px] max-lg:w-[300px] max-lg:h-[400px] max-md:w-[270px] max-md:h-[370px] relative ">
                                             <img loading='lazy' className="h-full w-full rounded-[10px] object-cover" src={`https://image.tmdb.org/t/p/original${upComingMovie?.poster_path}`} alt="img" />
                                             <div className="ovelayUpComingMovies absolute rounded-[9px] opacity-0 duration-300 inset-0 "></div>
                                         </div>
