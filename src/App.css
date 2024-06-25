@@ -98,6 +98,31 @@
 
 .im1g:hover .ovelayUpComingMovies{
     background: linear-gradient(to right, #01022de5, transparent);
+    opacity: 1;
+}
+.im1g:hover .colorDiv{
+    animation: divC 1.3s forwards;
+}
+
+
+.movi .likehove[data-liked="false"]{
+    transition: all .4s;
+    opacity: 0;
+}
+.movi:hover .likehove[data-liked="false"]{
+    opacity: 1;
+}
+
+.colorDiv {
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%);
+    box-shadow: 0 0 30px white
+}
+
+@keyframes divC {
+    100%{
+        left: 460px;
+        opacity: .4;
+    }
 }
 
 .cate.active{
@@ -112,4 +137,8 @@
 
 .Category{
     left: 0;
+}
+
+html {
+    scroll-behavior: smooth;
 }

@@ -8,6 +8,7 @@ import { Link, NavLink } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";
 import { useRecoilState } from "recoil";
 import FavouriteMovies from "../../Atom/Favourite/Favourite";
+import Slider from "../HomeSliders/Slider";
 
 const Home = () => {
     const [popularMovies , setPopularMovies] = useState([]);
@@ -18,7 +19,7 @@ const Home = () => {
         let res = await fetch("https://api.themoviedb.org/3/movie/popular?api_key=a979dad642f942e2f0d046021b704b36&page=1");
         let data = await res.json();
         setPopularMovies(data.results);
-        setActiveMovieInfo(data.results[0]);
+        setActiveMovieInfo(data.results[activeIndex]);
     }
 
     useEffect(() => {
@@ -64,37 +65,7 @@ const Home = () => {
 
 
 
-const [favouriteMovies , setFavouriteMovies] = useRecoilState(FavouriteMovies);
-console.log(favouriteMovies)
-var testing
-function likeOnClick(movieType, isliked) {
-    let  newCart =  [{
-        ...movieType,
-        isLiked: true
-    } , ...favouriteMovies]
 
-    for(let i = 0 ; i < favouriteMovies.length ; i++) {
-        if(favouriteMovies[i].id === movieType.id) {
-            newCart = removeItemAtIndex(favouriteMovies , i )
-            
-            break;
-        } 
-    }
-
-
-
-    // }
-    // ////////////////
-    setFavouriteMovies(newCart)
-    localStorage.setItem("Favourite" , JSON.stringify(newCart) )
-}
-
-function replaceItemAtIndex(arr, index, newValue) {
-    return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
-}
-function removeItemAtIndex(arr, index) {
-    return [...arr.slice(0, index), ...arr.slice(index + 1)];
-}
 
 
   const like = useRef()
@@ -103,15 +74,14 @@ function removeItemAtIndex(arr, index) {
 
     return (
         <>
-        <section className=" ">
-
+        <section>
                 <div className='content relative  '>
                     <div ref={banner} className="duration-[.2s]">
 
                         <div className='imgbgaft after:bg-gradient-to-r from-[#01022de5]  to-transparent after:opacity-[.8] after:absolute after:inset-0'>
                             <div className="h-[100vh] w-full bg-cover bg-top " style={{backgroundImage: `url(https://image.tmdb.org/t/p/original${activeMovieInfo?.backdrop_path})`}} ></div>
                         </div>
-            <div className="container lg:px-20 ">
+            <div className="container">
                         <div className='Info text-white absolute top-[50%] translate-y-[-60%] ml-10 max-sm:m-0'>
                             <h2 className='mb-5 text-[35px] font-bold max-smm:h-[106px] overflow-hidden '>{activeMovieInfo?.title}</h2>
                             <div className='flex items-center gap-5 mb-5 '>
@@ -150,175 +120,14 @@ function removeItemAtIndex(arr, index) {
 
 
 
+        <Slider useSt={upComingMovies} p={'Up Coming Movies'}/>
+        <Slider useSt={trendingMovies} p={'Trending Movies'}/>
+        <Slider useSt={topMovies} p={'Top Movies'}/>
 
 
+        
 
-        <section>
-            <div className="container p-6 2xl:w-[1350px] max-sm:w-[100%] ">
-
-                <div className="Movies ">
-                    <p className="mb-8 mt-5 font-bold text-[35px] text-white ">Up Coming Movies</p>
-                    <div className="grid 2xl:grid-cols-5 max-2xl:grid-cols-5 max-xl:grid-cols-4  max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 gap-5">
-                    {
-
-                        upComingMovies?.map((upComingMovie , index) => {
-                            const isLiked = favouriteMovies.find(m => m.id === upComingMovie.id)?.isLiked || false;
-                            return (
-                    <div className="toLoadMore relative overflow-hidden">
-
-                        <Link key={index} id="boxs1" to={`/details/${upComingMovie?.id}`} className=" im1g  overflow-hidden relative">
-                            <div className="img h-[320px] max-sm:h-[450px] w-full ">
-                                <img loading='lazy' className="h-full w-full rounded-[10px] object-cover" src={`https://image.tmdb.org/t/p/original${upComingMovie?.poster_path}`} alt="img" />
-                                <div className="ovelayUpComingMovies absolute rounded-[9px] duration-300 inset-0 "></div>
-                            </div>
-                            <div className="Inf">
-                                <div className="Icons bg-blue-700 rounded-full duration-500 absolute top-[-20%] text-[0] translate-y-[-50%] left-[50%] translate-x-[-50%] text-white">
-                                    <BiPlay />
-                                </div>
-                                <div className="text-white">
-                                    <p className="year duration-300 absolute px-3 right-[-120px] top-5 font-[800] bg-[#a09f9f] w-fit ">{upComingMovie?.release_date.split("-")[0]}</p>
-                                    <p className="rate duration-300 absolute top-[70px]  left-[-50px] flex items-center gap-2 text-[#ffff37]">
-                                    <AiFillStar />
-                                    {upComingMovie?.vote_average.toFixed(1)}
-                                    </p>
-                                    <p className="title duration-300 absolute bottom-[-90px] left-3 w-[180px] h-[26px]  overflow-auto ">
-                                        {upComingMovie?.title}
-                                    </p>
-                                    
-                                </div>
-                            </div>
-                        </Link>
-                        {/* Likeeeeeeeeeeeeeeeeee */}
-                            <div ref={like} onClick={() =>{
-                                    likeOnClick(upComingMovie)
-                                }} className={`text-[30px] duration-300 ${isLiked ? 'Likee text-[red] ease-in' : 'text-white'} cursor-pointer absolute top-2 left-3 `}>
-                                    <AiFillHeart />
-                            </div>
-                        </div>
-                            // Likeeeeeeeeeeeeeeeeeeeee
-
-                            )
-
-                            
-                        })
-
-                    }
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <div className="container p-6 2xl:w-[1350px] max-sm:w-[100%] ">
-
-                <div className="Movies ">
-                    <p className="mb-8 mt-5 font-bold text-[35px] text-white ">Top Movies</p>
-                    <div className="grid 2xl:grid-cols-5 max-2xl:grid-cols-5 max-xl:grid-cols-4  max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 gap-5">
-                    {
-
-                        topMovies?.map((topMovies , index) => {
-                            const isLiked = favouriteMovies.find(m => m.id === topMovies.id)?.isLiked || false;
-                            return (
-                    <div className="toLoadMore relative overflow-hidden">
-
-                        <Link key={index} id="boxs1" to={`/details/${topMovies?.id}`} className=" im1g  overflow-hidden relative">
-                            <div className="img h-[320px] max-sm:h-[450px] w-full ">
-                                <img loading='lazy' className="h-full w-full rounded-[10px] object-cover" src={`https://image.tmdb.org/t/p/original${topMovies?.poster_path}`} alt="img" />
-                                <div className="ovelayUpComingMovies absolute rounded-[9px] duration-300 inset-0 "></div>
-                            </div>
-                            <div className="Inf">
-                                <div className="Icons bg-blue-700 rounded-full duration-500 absolute top-[-20%] text-[0] translate-y-[-50%] left-[50%] translate-x-[-50%] text-white">
-                                    <BiPlay />
-                                </div>
-                                <div className="text-white">
-                                    <p className="year duration-300 absolute px-3 right-[-120px] top-5 font-[800] bg-[#a09f9f] w-fit ">{topMovies?.release_date.split("-")[0]}</p>
-                                    <p className="rate duration-300 absolute top-[70px]  left-[-50px] flex items-center gap-2 text-[#ffff37]">
-                                    <AiFillStar />
-                                    {topMovies?.vote_average.toFixed(1)}
-                                    </p>
-                                    <p className="title duration-300 absolute bottom-[-90px] left-3 w-[180px] h-[26px]  overflow-auto ">
-                                        {topMovies?.title}
-                                    </p>
-                                    
-                                </div>
-                            </div>
-                        </Link>
-                        {/* Likeeeeeeeeeeeeeeeeee */}
-                        <div ref={like} onClick={() =>{
-                                likeOnClick(topMovies)
-                            }} className={`text-[30px] ${isLiked ? 'Likee text-[red]' : 'text-white'} cursor-pointer absolute top-2 left-3 `}>
-                                <AiFillHeart />
-                            </div>
-                        </div>
-                        // Likeeeeeeeeeeeeeeeeeeeee
-
-                            )
-
-                            
-                        })
-
-                    }
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <section>
-            <div className="container p-6 2xl:w-[1350px] max-sm:w-[100%] ">
-
-                <div className="Movies ">
-                    <p className="mb-8 mt-5 font-bold text-[35px] text-white ">Trending Movies</p>
-                    <div className="grid 2xl:grid-cols-5 max-2xl:grid-cols-5 max-xl:grid-cols-4  max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 gap-5">
-                    {
-
-                        trendingMovies?.map((trendingMovies , index) => {
-                            const isLiked = favouriteMovies.find(m => m.id === trendingMovies.id)?.isLiked || false;
-
-                            return (
-                    <div className="toLoadMore relative overflow-hidden">
-
-                        <Link key={index} id="boxs1" to={`/details/${trendingMovies?.id}`} className=" im1g  overflow-hidden relative">
-                            <div className="img h-[320px] max-sm:h-[450px] w-full ">
-                                <img loading='lazy' className="h-full w-full rounded-[10px] object-cover" src={`https://image.tmdb.org/t/p/original${trendingMovies?.poster_path}`} alt="img" />
-                                <div className="ovelayUpComingMovies absolute rounded-[9px] duration-300 inset-0 "></div>
-                            </div>
-                            <div className="Inf">
-                                <div className="Icons bg-blue-700 rounded-full duration-500 absolute top-[-20%] text-[0] translate-y-[-50%] left-[50%] translate-x-[-50%] text-white">
-                                    <BiPlay />
-                                </div>
-                                <div className="text-white">
-                                    <p className="year duration-300 absolute px-3 right-[-120px] top-5 font-[800] bg-[#a09f9f] w-fit ">{trendingMovies?.release_date.split("-")[0]}</p>
-                                    <p className="rate duration-300 absolute top-[70px]  left-[-50px] flex items-center gap-2 text-[#ffff37]">
-                                    <AiFillStar />
-                                    {trendingMovies?.vote_average.toFixed(1)}
-                                    </p>
-                                    <p className="title duration-300 absolute bottom-[-90px] left-3 w-[180px] h-[26px]  overflow-auto ">
-                                        {trendingMovies?.title}
-                                    </p>
-                                    
-                                </div>
-                            </div>
-                        </Link>
-                        {/* Likeeeeeeeeeeeeeeeeee */}
-                        <div ref={like} onClick={() =>{
-                                likeOnClick(trendingMovies)
-                            }} className={`text-[30px] ${isLiked ? 'Likee text-[red]' : 'text-white'} cursor-pointer absolute top-2 left-3 `}>
-                                <AiFillHeart />
-                            </div>
-                        </div>
-                        // Likeeeeeeeeeeeeeeeeeeeee
-
-                            )
-
-                            
-                        })
-
-                    }
-                    </div>
-                </div>
-            </div>
-        </section>
+        
         
         </>
 

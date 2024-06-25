@@ -18,41 +18,22 @@ const DetailsPage = () => {
   useEffect(() => {
     getDataDetailsPage();
   }, [params]);
-
- 
-  let genersArr = []
-  let castsArr = []
   
+  console.log(detailsPage)
 
 
   let baseImg = "https://image.tmdb.org/t/p/"
 
   return (
-    // <>
-    //     <section className='p-10 relative w-[calc(100vw-250px)] z-[900000] h-auto overflow-hidden '>
-    //     <div className="container">
-    
-    
-    //     </div>
-    
-    //     </section>
-    // </>
-    
-    
-    
-    
-    
     <>
       <section className="Details pt-20 relative ">
          <div className='backdrop absolute blur-[2px] bg-no-repeat after:absolute after:inset-0 after:bg-[#373434] after:opacity-[.4] inset-0 opacity-[.3] z-[-1] bg-cover' style={{backgroundImage: `url('${baseImg}${"original"}${detailsPage?.backdrop_path || detailsPage?.poster_path}')`, height: "100%", width: "100%"}} ></div>
-        <div className="container p-6 ">
+        <div className="container py-6 ps-12 ">
 
-
-
-        <div className='Movie lg:flex gap-10 items-start '>
+        <div className='Movie lg:flex gap-10 items-start lg:w-[calc(100%-150px)] '>
     <img loading='lazy' className='rounded-[15px] w-[342px] h-[513px] max-lg:w-full max-lg:h-[320px] object-cover ' src={`${baseImg}original${detailsPage?.poster_path}`} alt="img" />
 
-<div className='Info text-white mt-6 w-full ' >
+<div className='Info text-white max-lg:mt-6' >
   <h2 className='text-[35px] font-bold mb-5 '>{detailsPage?.title}</h2>
   <div className='flex gap-8 mt-3 '>
     <p className="flex items-center gap-2 text-[#ffff37]">
@@ -64,13 +45,8 @@ const DetailsPage = () => {
   </div>
   <p className='mt-3 mb-5 text-[#a9a1a1]'>
   {
-    detailsPage?.genres.map((name) => {
-
-      genersArr.push(name.name)
-      return  genersArr.join(", ")
-
-    })
-    }
+    detailsPage?.genres.map((genre) => genre.name).slice(0,4).join(', ')
+  }
     </p>
 
     <p className=' tracking-wider'>{detailsPage?.overview}</p>
@@ -78,13 +54,8 @@ const DetailsPage = () => {
       <p className='pt-[12px] text-[17px]  text-[#9f9b9b] '>Starring</p>
       <p className='paragraph my-3 leading-[27px] '>
       {
-        detailsPage?.casts.cast.map((name) => {
-
-          castsArr.push(name.name)
-          return  castsArr.join(", ")
-
-        })
-        }
+        detailsPage?.casts.cast.map((cast) => cast.name).slice(0,4).join(', ')
+      }
         </p>
     </div>
     <div className="flex items-center gap-5 mt-6">

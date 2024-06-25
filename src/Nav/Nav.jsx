@@ -19,6 +19,7 @@ const Nav = () => {
         nav.current.style.boxShadow = "0 25px 50px -12px rgb(0 0 0 / 0.25)"
         nav.current.style.height = "100px"
     }else{
+        nav.current.style.backdropFilter = "blur(0px)"
         nav.current.style.background = "transparent"
         nav.current.style.boxShadow = "none"
         nav.current.style.height = "0"
@@ -93,7 +94,7 @@ function searchMovieByName(inpValue) {
     <nav ref={nav} className='fixed z-[9999999] h-0 duration-300 text-white w-full top-0 '>
         <div className='container max-sm:p-0 max-smm:px-2 max-smm:pe-3 '>
             <div className='flex items-center justify-between '>
-                <div className="ms-16 max-sm:m-0 ">
+                <div className="md:ms-4 max-sm:m-0 ">
                     <Link to={'/'} className='logo active:scale-[.97] duration-300 w-[100px] cursor-pointer flex items-center text-white '>
                         <img className="max-smm:w-[90px] max-smm:h-[90px] " loading='lazy' src={logo} alt="logo-home" />
                         <h1 className="text-[22px] ps-3 py-6 max-smm:text-[18px] max-smm:hidden ">SNapWatch</h1>
