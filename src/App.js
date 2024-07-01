@@ -4,8 +4,8 @@ import Home from './components/Home/home';
 import DetailsPage from './components/Details/DetailsPage';
 import Category from './components/Category/Category';
 import { RecoilRoot } from 'recoil';
-import Nav from './Nav/Nav';
 import Favorites from './Pages/FavouriteMovies/FavouriteMovies';
+import Nav from './Nav/Nav'
 
 document.querySelector("body").style.background = "rgb(30 41 59)"
 

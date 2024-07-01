@@ -1,6 +1,5 @@
 import { AiFillStar } from "react-icons/ai"; 
 import React, { useEffect, useState } from 'react'
-import NavBar from '../NavBar/nav'
 import { useParams } from 'react-router-dom'
 
 const DetailsPage = () => {

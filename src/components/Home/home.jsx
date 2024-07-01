@@ -59,12 +59,34 @@ const Home = () => {
             setTopMovies(Topdata.results)
     }
     
+
+
     useEffect(() =>{
         getDataAllMovies()
     }, [])
+    
+    const [name , setName] = useState('')
+    const [nameE , setNameE] = useState('')
 
 
-      
+    useEffect(() => {
+        setName(activeMovieInfo?.title);
+    },[activeMovieInfo?.title])
+    
+    
+    useEffect(() => {
+        if(name) {
+            let join = ''
+            for(let i = 0 ; i < Math.min(24, name.length) ; i++ ) {
+                let letters = name.split('')[i]
+                join += letters
+            }
+            if(name.length >= 24) {
+                join += '...'
+            }
+            setNameE(join)
+        }
+    },[name])
 
     return (
         <>
@@ -77,7 +99,8 @@ const Home = () => {
                         </div>
             <div className="container">
                         <div className='Info text-white absolute top-[50%] translate-y-[-60%] ml-10 max-sm:m-0 max-smm:translate-y-[-68%] '>
-                            <h2 className='mb-5 text-[35px] font-bold '>{activeMovieInfo?.title}</h2>
+                            <h2 className='mb-5 text-[35px] font-bold '>{nameE}</h2>
+                            {/* <h2 ref={mTitle}  className='mb-5 text-[35px] font-bold '>{activeMovieInfo?.title}</h2> */}
                             <div className='flex items-center gap-5 mb-5 '>
                                 <p className='font-[500]'>{activeMovieInfo?.release_date}</p>
                                 <span className='bg-[#787878] font-bold px-2 rounded-full py-1 '>{activeMovieInfo?.vote_average.toFixed(1)}</span>

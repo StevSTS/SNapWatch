@@ -45,7 +45,7 @@ const Slider = ({useSt,p}) => {
 
   return (
     <section className='mb-10'>
-        <div className="container px-[58px]">
+        <div className="container sm:px-[58px]">
             <p className="my-8 font-bold text-[35px] text-white max-lg:text-[27px] ">{p}</p>
             <div className='Movies flex gap-6 w-full overflow-x-auto scroll-smooth '>
                 {
