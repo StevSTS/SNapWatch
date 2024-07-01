@@ -27,7 +27,7 @@ const DetailsPage = () => {
     <>
       <section className="Details pt-20 relative ">
          <div className='backdrop absolute blur-[2px] bg-no-repeat after:absolute after:inset-0 after:bg-[#373434] after:opacity-[.4] inset-0 opacity-[.3] z-[-1] bg-cover' style={{backgroundImage: `url('${baseImg}${"original"}${detailsPage?.backdrop_path || detailsPage?.poster_path}')`, height: "100%", width: "100%"}} ></div>
-        <div className="container py-6 ps-12 ">
+        <div className="container py-6 lg:ps-12 ">
 
         <div className='Movie lg:flex gap-10 items-start lg:w-[calc(100%-150px)] '>
     <img loading='lazy' className='rounded-[15px] w-[342px] h-[513px] max-lg:w-full max-lg:h-[320px] object-cover ' src={`${baseImg}original${detailsPage?.poster_path}`} alt="img" />

@@ -100,7 +100,7 @@ function searchMovieByName(inpValue) {
                         <h1 className="text-[22px] ps-3 py-6 max-smm:text-[18px] max-smm:hidden ">SNapWatch</h1>
                     </Link>
                 </div>
-                <div className='pages me-24 max-sm:-m-0 max-sm:me-10 max-smm:m-0 '>
+                <div className='pages max-sm:me-6 '>
                     <ul className='flex items-center gap-4'>
                         <li><Link to={'/'} >Home</Link></li>
                         <li><Link to={'/favorites'} >Favorites</Link></li>
