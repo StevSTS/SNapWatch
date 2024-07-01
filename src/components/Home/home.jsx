@@ -61,20 +61,8 @@ const Home = () => {
     
     useEffect(() =>{
         getDataAllMovies()
-        if (window.innerWidth === 495) {
-            // Execute your code here
-            console.log("Screen width is exactly 495 pixels.");
-            alert('now its 495px')
-            // Place your specific actions or function calls here
-          }
     }, [])
 
-
-
-
-
-
-  const like = useRef()
 
       
 
@@ -88,7 +76,7 @@ const Home = () => {
                             <div className="h-[100vh] w-full bg-cover bg-top " style={{backgroundImage: `url(https://image.tmdb.org/t/p/original${activeMovieInfo?.backdrop_path})`}} ></div>
                         </div>
             <div className="container">
-                        <div className='Info text-white absolute top-[50%] translate-y-[-60%] ml-10 max-sm:m-0'>
+                        <div className='Info text-white absolute top-[50%] translate-y-[-60%] ml-10 max-sm:m-0 max-smm:translate-y-[-68%] '>
                             <h2 className='mb-5 text-[35px] font-bold '>{activeMovieInfo?.title}</h2>
                             <div className='flex items-center gap-5 mb-5 '>
                                 <p className='font-[500]'>{activeMovieInfo?.release_date}</p>
