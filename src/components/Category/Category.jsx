@@ -27,7 +27,7 @@ const Category = () => {
 
 
     const [favouriteMovies , setFavouriteMovies] = useRecoilState(FavouriteMovies);
-    console.log(favouriteMovies)
+
     function likeOnClick(movieType, isliked) {
         let  newCart =  [{
             ...movieType,

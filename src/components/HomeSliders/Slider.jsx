@@ -21,7 +21,7 @@ const Slider = ({useSt,p}) => {
                 newCart = removeItemAtIndex(favouriteMovies , i )
                 
                 break;
-            } 
+            }
         }
     
     

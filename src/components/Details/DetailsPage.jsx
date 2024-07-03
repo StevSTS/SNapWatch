@@ -17,8 +17,6 @@ const DetailsPage = () => {
   useEffect(() => {
     getDataDetailsPage();
   }, [params]);
-  
-  console.log(detailsPage)
 
 
   let baseImg = "https://image.tmdb.org/t/p/"

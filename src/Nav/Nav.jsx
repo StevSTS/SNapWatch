@@ -66,7 +66,6 @@ const [favouriteMovies , setFavouriteMovies] = useRecoilState(FavouriteMovies);
 
 
 const [searchName , setSearchName] = useState(false)
-console.log(searchName)
 
 let newCartFav
 
@@ -77,7 +76,6 @@ function searchMovieByName(inpValue) {
   if(movie.title.startsWith(inpValue)) {
     // setFavouriteMovies(movie)
     newCartFav = [{movie}]
-    console.log(newCartFav)
     localStorage.setItem("newCartFav" , JSON.stringify(newCartFav) )
   }
 })
@@ -100,7 +98,7 @@ function searchMovieByName(inpValue) {
                         <h1 className="text-[22px] ps-3 py-6 max-smm:text-[18px] max-smm:hidden ">SNapWatch</h1>
                     </Link>
                 </div>
-                <div className='pages max-sm:me-6 '>
+                <div className='pages me-8 '>
                     <ul className='flex items-center gap-4'>
                         <li><Link to={'/'} >Home</Link></li>
                         <li><Link to={'/favorites'} >Favorites</Link></li>
